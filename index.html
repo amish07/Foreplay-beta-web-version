@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreplay - Let the games of desire begin!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #3a015c, #4f0147, #35012c, #290025, #11001c);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+        }
+
+        .main-card {
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .player-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .name-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .name-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .gender-dropdown {
+            position: relative;
+        }
+
+        .gender-btn {
+            width: 60px;
+            height: 53px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gender-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            display: none;
+            z-index: 10;
+        }
+
+        .gender-option {
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            font-size: 1.2rem;
+        }
+
+        .gender-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .remove-btn {
+            width: 53px;
+            height: 53px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 107, 157, 0.3);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: rgba(255, 107, 157, 0.5);
+            transform: scale(1.1);
+        }
+
+        .notification {
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            background: rgba(255, 107, 157, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .category-card.selected {
+            background: linear-gradient(45deg, rgba(255, 107, 157, 0.3), rgba(196, 69, 105, 0.3));
+            border-color: rgba(255, 107, 157, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+        }
+
+        .category-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .category-name {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .game-container {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 320px;
+            height: 450px;
+        }
+
+        .game-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card:nth-child(2) {
+            transform: rotate(-2deg) scale(0.95);
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        .game-card:nth-child(3) {
+            transform: rotate(1deg) scale(0.9);
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .game-card.active {
+            z-index: 2;
+        }
+
+        .player-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6b9d;
+            margin-bottom: 30px;
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .swipe-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 0 40px;
+        }
+
+        .swipe-hint {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 1000;
+            animation: feedbackPop 1s ease;
+        }
+
+        .feedback.complete {
+            background: rgba(46, 204, 113, 0.9);
+            backdrop-filter: blur(15px);
+        }
+
+        .feedback.forfeit {
+            background: rgba(231, 76, 60, 0.9);
+            backdrop-filter: blur(15px);
+        }
+
+        @keyframes feedbackPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo h1 {
+                font-size: 2.5rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-stack {
+                width: 280px;
+                height: 400px;
+            }
+
+            .player-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .gender-dropdown, .remove-btn {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing" class="page active">
+        <div class="container">
+            <div class="logo">
+                <h1>Foreplay</h1>
+                <div class="tagline">Let the games of desire begin!</div>
+            </div>
+            <div class="main-card glass">
+                <p style="font-size: 1.1rem; margin-bottom: 30px;">Ready to spice things up? Create an unforgettable experience with your partner or friends.</p>
+                <button class="btn-primary" onclick="showPage('players')">Start Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Players Page -->
+    <div id="players" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('landing')">←</button>
+            <div class="logo">
+                <h2 style="color: #ff6b9d; margin-bottom: 30px;">Add Players</h2>
+            </div>
+            
+            <div id="players-list">
+                <div class="player-row">
+                    <input type="text" class="name-input" placeholder="Enter name..." data-player="0">
+                    <div class="gender-dropdown">
+                        <button class="gender-btn" onclick="toggleGenderDropdown(0)">❓</button>
+                        <div class="gender-options">
+                            <div class="gender-option" onclick="selectGender(0, '👨', 'Male')">👨</div>
+                            <div class="gender-option" onclick="selectGender(0, '👩', 'Female')">👩</div>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removePlayer(0)" style="display: none;">✖</button>
+                </div>
+                <div class="player-row">
+                    <input type="text" class="name-input" placeholder="Enter name..." data-player="1">
+                    <div class="gender-dropdown">
+                        <button class="gender-btn" onclick="toggleGenderDropdown(1)">❓</button>
+                        <div class="gender-options">
+                            <div class="gender-option" onclick="selectGender(1, '👨', 'Male')">👨</div>
+                            <div class="gender-option" onclick="selectGender(1, '👩', 'Female')">👩</div>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removePlayer(1)" style="display: none;">✖</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="btn-secondary" onclick="addPlayer()">Add Player</button>
+            </div>
+
+            <div id="error-notification" class="notification" style="display: none;">
+                <span>Spice it up with at least 2 names & their vibe (gender) 😉</span>
+                <button onclick="hideNotification()" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">✖</button>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn-primary" onclick="validateAndContinue()">Let's Get Spicy 🔥</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Selection Page -->
+    <div id="categories" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('players')">←</button>
+            <div class="logo">
+                <h2 style="color: #ff6b9d; margin-bottom: 30px;">Choose Categories</h2>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">🔥</span>
+                    <div class="category-name">Roleplay</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">❤️</span>
+                    <div class="category-name">Intimate Questions</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">💋</span>
+                    <div class="category-name">Touch & Tease</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">🧠</span>
+                    <div class="category-name">Dirty Truth or Dare</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">🎭</span>
+                    <div class="category-name">Would You Rather</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">🔮</span>
+                    <div class="category-name">Fantasy</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">😏</span>
+                    <div class="category-name">After Dark</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">🛏️</span>
+                    <div class="category-name">Positions & Kinks</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">🎲</span>
+                    <div class="category-name">Dice of Desire</div>
+                </div>
+                <div class="category-card" onclick="toggleCategory(this)">
+                    <span class="category-emoji">🕯️</span>
+                    <div class="category-name">Slow Burn</div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn-primary" onclick="startGame()">Let the Pleasure Begin 💞</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="showPage('categories')">←</button>
+            
+            <div class="game-container">
+                <div class="card-stack" id="card-stack">
+                    <!-- Cards will be dynamically generated -->
+                </div>
+            </div>
+
+            <div class="swipe-indicators">
+                <div class="swipe-hint">
+                    <span>👈 Forfeit</span>
+                </div>
+                <div class="swipe-hint">
+                    <span>Complete 👉</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let players = [];
+        let selectedCategories = [];
+        let gameCards = [];
+        let currentCardIndex = 0;
+        let playerCount = 2;
+
+        const cardPrompts = {
+             "🔥 Roleplay": [
+    "Act out your fantasy character for 2 minutes",
+    "Roleplay as strangers meeting at a bar",
+    "Pretend you're the boss and your partner is the intern",
+    "Act like you're on a first date again",
+    "Roleplay as a celebrity and their biggest fan",
+    "Be a doctor and patient in a very personal check-up",
+    "Pretend you're long-distance lovers seeing each other after a year",
+    "Play a massage therapist and their stressed client",
+    "Be a hotel guest and the seductive concierge",
+    "Act like you’re meeting secretly at a party",
+    "Roleplay as a royal and their loyal servant",
+    "Pretend you're a fashion photographer and model",
+    "Be strangers stuck in an elevator with rising tension",
+    "Act like you’re neighbors meeting for the first time",
+    "Pretend one of you is undercover—keep your real identity a secret",
+    "Roleplay as a professor and student discussing... extra credit",
+    "Play a famous author and their obsessed fan",
+    "Pretend you're coworkers at a late-night office session",
+    "Act like you're in a forbidden romance",
+    "Be a celebrity couple avoiding paparazzi",
+    "Roleplay as a spy on a secret mission and the local informant",
+    "Pretend you're the wedding planner and the nervous bride/groom",
+    "Play a detective interrogating a seductive suspect",
+    "Act like you're lovers from rival families meeting in secret",
+    "Pretend you’re meeting after a blind date",
+    "Roleplay as a director and their lead actor in a steamy scene",
+    "Be two travelers sharing a room due to overbooking",
+    "Act like you’re hotel staff sneaking away for a quick moment",
+    "Pretend you’re dancing together at a masquerade ball",
+    "Play a game of seduction with no words—only gestures"
+  ],
+            '❤️ Intimate Questions':  [
+    "What’s your most cherished memory of us so far?",
+    "What does intimacy mean to you?",
+    "What part of me do you love touching the most?",
+    "When do you feel closest to me?",
+    "What's a secret romantic fantasy you’ve never shared?",
+    "What’s one thing you want to explore more in our relationship?",
+    "What do you think makes us special as a couple?",
+    "What’s the most romantic thing someone has ever done for you?",
+    "How do you define a perfect date night?",
+    "What small thing do I do that turns you on the most?",
+    "When did you first realize you were attracted to me?",
+    "If we could disappear for a weekend, where would we go and why?",
+    "What’s something you wish we did more often?",
+    "What’s one thing you want me to know but haven’t told me yet?",
+    "What’s your love language—and do you think I speak it fluently?",
+    "How do you feel when we cuddle?",
+    "What’s your favorite compliment I’ve ever given you?",
+    "Describe the most romantic dream you’ve ever had.",
+    "If we were to renew our vows today, what would you say?",
+    "What physical feature of mine do you admire the most?",
+    "What kind of intimacy do you crave more of?",
+    "What does ‘foreplay’ mean to you emotionally—not just physically?",
+    "What’s one way I make you feel safe?",
+    "What’s something new you want to try together—emotionally or physically?",
+    "How have I changed your view on love?",
+    "What do you think we’ve grown at the most as a couple?",
+    "What’s your favorite part of our physical connection?",
+    "What’s your favorite way for me to initiate affection?",
+    "Describe your ideal ‘we did nothing but loved each other’ day.",
+    "How would you describe the way I make you feel in one word—and why?"
+  ],
+            '💋 Touch & Tease': [
+    "Trace your partner’s jawline with your fingertips slowly.",
+    "Give your partner a lingering kiss on their neck.",
+    "Run your hands slowly over your partner’s back without speaking.",
+    "Use only your breath to tease their skin for 30 seconds.",
+    "Whisper something dirty in their ear and smile.",
+    "Play with their hair while locking eyes.",
+    "Kiss every inch from their wrist to their shoulder.",
+    "Tease your partner with gentle fingertip touches—no kissing allowed.",
+    "Caress your partner’s face and admire every feature.",
+    "Use just your nose to explore their neck and collarbone.",
+    "Blow softly on your partner’s most sensitive spot.",
+    "Give them a slow hand massage while looking into their eyes.",
+    "Run your fingers under their shirt—barely touching the skin.",
+    "Brush your lips lightly against theirs, but don’t kiss yet.",
+    "Gently bite their earlobe and then back away with a smirk.",
+    "Slide your hand under their shirt and stop right before it gets too far.",
+    "Write a naughty word with your finger on their back and make them guess it.",
+    "Kiss the back of their hand like royalty.",
+    "Blindfold your partner and tease them with your hands for 1 minute.",
+    "Gently tug on their clothing, but don’t remove anything.",
+    "Kiss their eyelids and cheeks—skip the lips.",
+    "Playfully tickle a sensitive spot and then hush them with a kiss.",
+    "Run an ice cube along their collarbone or wrist.",
+    "Tease their lips with a piece of fruit—then kiss them.",
+    "Use a soft object nearby to slowly run over their body.",
+    "Give your partner goosebumps on purpose—no hands allowed.",
+    "Kiss a new place on their body they wouldn’t expect.",
+    "Give your partner a lap pillow and stroke their hair gently.",
+    "Make eye contact and say the sexiest word you know—very slowly.",
+    "Tease your partner with a feather-light touch and ask them to stay still."
+  ],
+            '🧠 Dirty Truth or Dare': [
+    "Truth: What’s the naughtiest thought you’ve had today?",
+    "Dare: Kiss your partner somewhere unexpected.",
+    "Truth: Have you ever had a fantasy about someone in this room?",
+    "Dare: Whisper your favorite dirty word in their ear.",
+    "Truth: What's the wildest place you've had sex?",
+    "Dare: Give your partner a 30-second lap dance.",
+    "Truth: What's a kink you’ve always wanted to try?",
+    "Dare: Remove one piece of your clothing.",
+    "Truth: Describe in detail your hottest dream ever.",
+    "Dare: Gently bite your partner’s neck.",
+    "Truth: Do you prefer being dominant or submissive?",
+    "Dare: Send a sexy text to your partner—even though they're next to you.",
+    "Truth: Have you ever faked pleasure? Why?",
+    "Dare: Blindfold your partner and kiss them passionately.",
+    "Truth: What part of your body do you wish was kissed more?",
+    "Dare: Tell your partner one thing you want them to do to you tonight.",
+    "Truth: What's a taboo thought you've had during intimacy?",
+    "Dare: Lick or kiss your partner’s favorite body part.",
+    "Truth: What's something you've done sexually but never admitted?",
+    "Dare: Imitate a fantasy role you've always wanted to play.",
+    "Truth: What’s your secret guilty pleasure in bed?",
+    "Dare: Let your partner take control for the next 60 seconds.",
+    "Truth: What’s the one position you've never tried but want to?",
+    "Dare: Take your partner’s hand and guide it where you want to be touched.",
+    "Truth: Have you ever thought about being watched?",
+    "Dare: Moan your partner’s name—loudly.",
+    "Truth: Describe your ideal night of seduction.",
+    "Dare: Allow your partner to undress one layer of your clothing.",
+    "Truth: If you could relive one intimate moment, what would it be?",
+    "Dare: Share a fantasy that involves the person next to you."
+  ],
+            '🎭 Would You Rather': [
+    "Would you rather kiss passionately for 10 minutes or cuddle naked for 30?",
+    "Would you rather dominate or be dominated?",
+    "Would you rather have slow, sensual sex or wild, spontaneous sex?",
+    "Would you rather make love on a beach or in a luxurious hotel room?",
+    "Would you rather be blindfolded or handcuffed?",
+    "Would you rather whisper dirty things or hear them whispered to you?",
+    "Would you rather kiss your partner’s neck or inner thigh?",
+    "Would you rather explore a fantasy or keep things real?",
+    "Would you rather have morning intimacy or late-night passion?",
+    "Would you rather take control or give it up completely?",
+    "Would you rather make love in the rain or under candlelight?",
+    "Would you rather play truth or dare or strip poker?",
+    "Would you rather be seduced with words or with touch?",
+    "Would you rather make out in public or have a steamy night in?",
+    "Would you rather reenact a scene from a movie or create your own fantasy?",
+    "Would you rather only kiss or only touch for 10 minutes?",
+    "Would you rather tease or be teased?",
+    "Would you rather have a weekend alone with your partner or a wild party night?",
+    "Would you rather your partner dress up or strip down?",
+    "Would you rather make love in complete silence or while music plays?",
+    "Would you rather be complimented for your body or your moves?",
+    "Would you rather try roleplay or use toys?",
+    "Would you rather receive a sensual massage or give one?",
+    "Would you rather moan their name or hear yours screamed?",
+    "Would you rather be surprised in bed or plan everything out?",
+    "Would you rather kiss every inch of your partner or be kissed that way?",
+    "Would you rather explore your partner’s desires or share your own?",
+    "Would you rather use a feather or ice cube in foreplay?",
+    "Would you rather have a quickie or a marathon session?",
+    "Would you rather be caught being naughty or catch someone else?"
+  ],
+            '🔮 Fantasy':[
+    "Describe a fantasy you’ve never told anyone.",
+    "If you could teleport to a romantic place right now, where would you go?",
+    "Create a fantasy scenario for your partner to act out.",
+    "Pretend you’re both on a secret mission with a seductive twist.",
+    "Imagine your dream intimate night from start to finish.",
+    "Describe a forbidden place you’d love to be intimate in.",
+    "What’s a public fantasy you secretly think about?",
+    "Roleplay a celebrity crush scenario.",
+    "Describe a scene from a movie you wish to recreate with your partner.",
+    "Design a dream vacation centered around intimacy.",
+    "If you could become a character from a book or movie in bed, who would it be?",
+    "Act out a luxurious hotel rendezvous fantasy.",
+    "What would you do if you had 24 hours of no consequences?",
+    "Build a fantasy using a blindfold, soft music, and surprise touches.",
+    "Describe a sensual story you’d love to be part of.",
+    "What fantasy item (like costumes or props) excites you the most?",
+    "Plan a secret escape with your partner. Where, how, and what would you do?",
+    "Describe your ideal role for your partner in a fantasy scene.",
+    "What’s a dream outfit you’d like to see your partner in?",
+    "Create a fantasy involving only touch and whispers.",
+    "If you had a magic power in bed, what would it be?",
+    "What time period would you travel to for a passionate rendezvous?",
+    "Describe a fantasy that involves food and intimacy.",
+    "What’s the wildest dream you've had about your partner?",
+    "If you had a secret identity for a night, who would you be?",
+    "What mythical or magical creature would you become in a fantasy roleplay?",
+    "Imagine a spontaneous adventure that turns steamy.",
+    "Design a fantasy involving candlelight, silk sheets, and music.",
+    "What’s a fantasy location that turns you on instantly?",
+    "Tell a story where you and your partner are strangers meeting for a passionate night."
+  ],
+            '😏 After Dark':[
+    "Whisper the naughtiest thing you want to do tonight.",
+    "Describe in detail how you’d seduce your partner right now.",
+    "Share your favorite memory of an intimate moment together.",
+    "Take off one item of clothing... slowly.",
+    "Send your partner a sexy voice note (even if they're in the room).",
+    "Say something you'd never say during the day.",
+    "Show your partner how you'd like to be kissed.",
+    "Describe a dream scenario involving dim lights and soft music.",
+    "Reveal the one thing you want your partner to try tonight.",
+    "Sit on your partner’s lap and whisper your next move.",
+    "Stare into each other’s eyes for 30 seconds, then act on instinct.",
+    "Say a single word that turns you on – partner has to build a scene with it.",
+    "Describe how your partner made you feel sexy this week.",
+    "Get under a blanket and describe a secret fantasy.",
+    "Talk about a time you couldn’t resist each other.",
+    "Act out a seductive dance or movement (no music needed).",
+    "Exchange one steamy compliment each, back and forth – 3 rounds.",
+    "Use only your fingers to describe your favorite touch.",
+    "Say what you’d do to your partner if time stopped for 10 minutes.",
+    "Kiss your partner somewhere you usually don’t.",
+    "Say your favorite part of their body and why.",
+    "Describe what would make this night unforgettable.",
+    "Give a slow, teasing touch somewhere unexpected.",
+    "Name a place on your partner’s body you want to explore more.",
+    "Act like it's your first time seeing them and express your desire.",
+    "Tell your partner how they make you feel when they’re confident.",
+    "Whisper your favorite intimate word in their ear.",
+    "Explain what the perfect 'After Dark' playlist would include.",
+    "Take turns saying what you want more of – no holding back.",
+    "Say what you'd want to wake up to tomorrow morning 😉"
+  ],
+            '🛏️ Positions & Kinks':  [
+    "Try your favorite position… but with a twist.",
+    "Act out a scene involving one of your shared kinks.",
+    "Pick a new position neither of you has tried before.",
+    "Whisper a kink you’ve never said out loud.",
+    "Explain your top 3 positions and why you love them.",
+    "Let your partner guess your hidden kink — then reveal it.",
+    "Act out your current favorite position with clothes on.",
+    "Choose a role to play and let your partner guide you.",
+    "Rank your top 3 favorite intimate positions.",
+    "Share one position you want to master.",
+    "Reveal one kink you thought was taboo… until now.",
+    "Touch your partner where you want to be touched.",
+    "Try a ‘freeze and go’ session: move, stop, wait for signal.",
+    "Recreate a scene from a spicy movie or book.",
+    "Explore dominance and submission for 2 minutes.",
+    "Tie your partner’s hands loosely using something nearby.",
+    "Give orders for 30 seconds — partner must obey.",
+    "Try a silent challenge: one position, no words allowed.",
+    "Describe your most experimental intimate experience.",
+    "Act out a scene where one of you is ‘in charge’.",
+    "Use a pillow or furniture to adjust your favorite position.",
+    "Kiss or touch your partner in your kinkiest way.",
+    "Take turns suggesting wild position ideas.",
+    "Explain your favorite kink in detail — no filters.",
+    "Attempt a slow-motion version of a usual position.",
+    "Act like you're discovering each other’s bodies for the first time.",
+    "Invent a new position — give it a fun name.",
+    "Reveal the position you think about most often.",
+    "Do a sensual pose and let your partner copy it.",
+    "Combine your top kink and position into one fantasy scene."
+  ],
+            '🎲 Dice of Desire': [
+    "Roll an imaginary die: 1 = kiss, 2 = massage, 3 = whisper a fantasy, 4 = tease, 5 = blindfold touch, 6 = your choice.",
+    "Let your partner name 6 actions — roll and perform the outcome.",
+    "Body part dice: 1 = lips, 2 = neck, 3 = chest, 4 = back, 5 = inner thigh, 6 = full body — go!",
+    "Pleasure action dice: 1 = kiss, 2 = tease, 3 = bite, 4 = lick, 5 = touch, 6 = moan — your move!",
+    "Partner picks 6 dares — you roll and follow through.",
+    "Use a dice app or pretend roll — both must commit to the result.",
+    "Roll a number — that’s how many kisses you give your partner.",
+    "Roll for tempo: 1–3 = slow & sensual, 4–6 = fast & passionate.",
+    "Roll the dice and remove that many items of clothing (both players).",
+    "Imagine each number as a location — act on where the dice takes you.",
+    "Roll and act out a fantasy starting with the first letter of the number (e.g., 2 = tease).",
+    "If the roll is even, you're dominant — if odd, you're submissive.",
+    "Roll a 1–6 and use that number of compliments to seduce your partner.",
+    "Partner chooses a toy or item for each number — roll to find out what you use.",
+    "1–3 = tease your partner, 4–6 = let them tease you.",
+    "Roll and make your partner wait that many seconds before touching them.",
+    "Roll and do that many slow kisses on a body part of their choice.",
+    "Roll for location: 1 = couch, 2 = bed, 3 = floor, 4 = wall, 5 = table, 6 = surprise!",
+    "Roll and describe a fantasy in that many words.",
+    "Pick 6 kink ideas together — roll to select the one to explore.",
+    "Roll to swap roles: dominant/submissive, talker/silent, tease/pleasure.",
+    "Each of you rolls — whoever rolls lower does a dare from the other.",
+    "Roll and give that many compliments… but whisper them.",
+    "1–3 = kiss game, 4–6 = touch game — set a 1-minute timer.",
+    "Roll and hold eye contact for that many seconds while building tension.",
+    "Create a dice-based strip game: roll = how much you take off.",
+    "Roll to set a timer (minutes = number rolled) for slow seduction.",
+    "Roll and describe something you’d love to try based on that number.",
+    "Even number? Silent intimacy. Odd number? Dirty talk only.",
+    "Roll to pick which player goes next — high roll wins the turn!"
+  ],
+            '🕯️ Slow Burn':[
+    "Stare into your partner's eyes for one full minute — no talking.",
+    "Lightly touch your partner’s arm for 60 seconds without saying a word.",
+    "Take 3 minutes to undress each other — slowly and sensually.",
+    "Whisper sweet nothings — one sentence every 10 seconds for 1 minute.",
+    "Trace your partner’s silhouette with just your fingertips.",
+    "Run your fingers through their hair while maintaining eye contact.",
+    "Hold hands in silence and sync your breathing for 2 minutes.",
+    "Place a soft kiss on each other’s most sensitive spots — one at a time.",
+    "Take turns describing what you love about each other… slowly.",
+    "Spend 2 minutes hugging — no movement, just connection.",
+    "Give your partner a slow neck kiss, stopping right before their lips.",
+    "Use just your breath — hover near their skin without touching.",
+    "Take off one item of clothing — but describe why it’s coming off.",
+    "Share a memory that made your heart race… then kiss after.",
+    "Blindfold your partner and give soft, teasing touches for 60 seconds.",
+    "Caress your partner’s face with both hands — don’t break eye contact.",
+    "Move your lips close to theirs… and hold still for 30 seconds before kissing.",
+    "Tell them how they make you feel, one word at a time.",
+    "Let your hands explore — but only above the waist… for now.",
+    "Ask: 'How do you want to be touched right now?' Then wait…",
+    "Kiss every fingertip one by one, whispering something each time.",
+    "Give a massage… but don’t rush. Go slow and focus on one spot.",
+    "Say something soft after every 10 seconds of silence.",
+    "Use a feather, cloth, or hand to trace their spine slowly.",
+    "Count 30 heartbeats with your head on their chest.",
+    "Slide your hand up their arm — but stop just before reaching the shoulder.",
+    "Hold each other tightly… then slowly loosen your grip.",
+    "Run your hand through their hair like it’s your last time.",
+    "Ask: 'Can I kiss you now?' — wait for an answer, then do it slowly.",
+    "Say their name softly, then again… and again…"
+  ]
+        };
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function toggleGenderDropdown(index) {
+            const dropdown = document.querySelectorAll('.gender-options')[index];
+            const isVisible = dropdown.style.display === 'block';
+            
+            // Close all dropdowns
+            document.querySelectorAll('.gender-options').forEach(d => d.style.display = 'none');
+            
+            if (!isVisible) {
+                dropdown.style.display = 'block';
+            }
+        }
+
+        function selectGender(index, emoji, gender) {
+            const btn = document.querySelectorAll('.gender-btn')[index];
+            btn.textContent = emoji;
+            btn.dataset.gender = gender;
+            document.querySelectorAll('.gender-options')[index].style.display = 'none';
+            
+            updateRemoveButtons();
+        }
+
+        function addPlayer() {
+            if (playerCount >= 10) return;
+            
+            const playersList = document.getElementById('players-list');
+            const newRow = document.createElement('div');
+            newRow.className = 'player-row';
+            newRow.innerHTML = `
+                <input type="text" class="name-input" placeholder="Enter name..." data-player="${playerCount}">
+                <div class="gender-dropdown">
+                    <button class="gender-btn" onclick="toggleGenderDropdown(${playerCount})">❓</button>
+                    <div class="gender-options">
+                        <div class="gender-option" onclick="selectGender(${playerCount}, '👨', 'Male')">👨</div>
+                        <div class="gender-option" onclick="selectGender(${playerCount}, '👩', 'Female')">👩</div>
+                    </div>
+                </div>
+                <button class="remove-btn" onclick="removePlayer(${playerCount})">✖</button>
+            `;
+            
+            playersList.appendChild(newRow);
+            playerCount++;
+            updateRemoveButtons();
+        }
+
+        function removePlayer(index) {
+            const rows = document.querySelectorAll('.player-row');
+            if (rows.length > 2) {
+                rows[index].remove();
+                updateRemoveButtons();
+            }
+        }
+
+        function updateRemoveButtons() {
+            const rows = document.querySelectorAll('.player-row');
+            rows.forEach((row, index) => {
+                const removeBtn = row.querySelector('.remove-btn');
+                removeBtn.style.display = rows.length > 2 ? 'block' : 'none';
+            });
+        }
+
+        function validateAndContinue() {
+            const inputs = document.querySelectorAll('.name-input');
+            const genderBtns = document.querySelectorAll('.gender-btn');
+            
+            players = [];
+            let validPlayers = 0;
+            
+            inputs.forEach((input, index) => {
+                if (input.value.trim() && genderBtns[index].dataset.gender) {
+                    players.push({
+                        name: input.value.trim(),
+                        gender: genderBtns[index].dataset.gender
+                    });
+                    validPlayers++;
+                }
+            });
+            
+            if (validPlayers < 2) {
+                showNotification();
+            } else {
+                hideNotification();
+                showPage('categories');
+            }
+        }
+
+        function showNotification() {
+            document.getElementById('error-notification').style.display = 'flex';
+        }
+
+        function hideNotification() {
+            document.getElementById('error-notification').style.display = 'none';
+        }
+
+        function toggleCategory(card) {
+            card.classList.toggle('selected');
+        }
+
+        function startGame() {
+            const selectedCards = document.querySelectorAll('.category-card.selected');
+            
+            if (selectedCards.length === 0) {
+                alert('Please select at least one category!');
+                return;
+            }
+            
+            selectedCategories = Array.from(selectedCards).map(card => 
+                card.querySelector('.category-emoji').textContent + ' ' + card.querySelector('.category-name').textContent
+            );
+            
+            generateGameCards();
+            showPage('game');
+            setupSwipeGestures();
+        }
+
+        function generateGameCards() {
+            gameCards = [];
+            
+            selectedCategories.forEach(category => {
+                const prompts = cardPrompts[category] || ['Generic prompt for ' + category];
+                prompts.forEach(prompt => {
+                    players.forEach(player => {
+                        gameCards.push({
+                            player: player.name,
+                            prompt: prompt,
+                            category: category
+                        });
+                    });
+                });
+            });
+            
+            // Shuffle cards
+            for (let i = gameCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [gameCards[i], gameCards[j]] = [gameCards[j], gameCards[i]];
+            }
+            
+            renderCards();
+        }
+
+        function renderCards() {
+            const cardStack = document.getElementById('card-stack');
+            cardStack.innerHTML = '';
+            
+            for (let i = 0; i < Math.min(3, gameCards.length - currentCardIndex); i++) {
+                const cardData = gameCards[currentCardIndex + i];
+                if (!cardData) break;
+                
+                const card = document.createElement('div');
+                card.className = `game-card ${i === 0 ? 'active' : ''}`;
+                card.innerHTML = `
+                    <div class="player-name">${cardData.player}</div>
+                    <div class="card-text">${cardData.prompt}</div>
+                `;
+                
+                cardStack.appendChild(card);
+            }
+        }
+
+        function setupSwipeGestures() {
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            
+            const cardStack = document.getElementById('card-stack');
+            
+            function handleStart(e) {
+                startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                isDragging = true;
+                cardStack.style.cursor = 'grabbing';
+            }
+            
+            function handleMove(e) {
+                if (!isDragging) return;
+                
+                currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+                const deltaX = currentX - startX;
+                
+                const activeCard = cardStack.querySelector('.game-card.active');
+                if (activeCard) {
+                    activeCard.style.transform = `translateX(${deltaX}px) rotate(${deltaX * 0.1}deg)`;
+                    activeCard.style.opacity = 1 - Math.abs(deltaX) / 200;
+                }
+            }
+            
+            function handleEnd() {
+                if (!isDragging) return;
+                
+                const deltaX = currentX - startX;
+                const threshold = 100;
+                
+                if (Math.abs(deltaX) > threshold) {
+                    if (deltaX > 0) {
+                        completeCard();
+                    } else {
+                        forfeitCard();
+                    }
+                } else {
+                    const activeCard = cardStack.querySelector('.game-card.active');
+                    if (activeCard) {
+                        activeCard.style.transform = '';
+                        activeCard.style.opacity = '';
+                    }
+                }
+                
+                isDragging = false;
+                cardStack.style.cursor = 'grab';
+            }
+            
+            cardStack.addEventListener('mousedown', handleStart);
+            cardStack.addEventListener('touchstart', handleStart);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('touchmove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            document.addEventListener('touchend', handleEnd);
+        }
+
+        function completeCard() {
+            showFeedback('Nice! Task completed.', 'complete');
+            nextCard();
+        }
+
+        function forfeitCard() {
+            showFeedback('Forfeited! Moving on...', 'forfeit');
+            nextCard();
+        }
+
+        function showFeedback(message, type) {
+            const feedback = document.createElement('div');
+            feedback.className = `feedback ${type}`;
+            feedback.textContent = message;
+            document.body.appendChild(feedback);
+            
+            setTimeout(() => {
+                feedback.remove();
+            }, 1000);
+        }
+
+        function nextCard() {
+            currentCardIndex++;
+            
+            if (currentCardIndex >= gameCards.length) {
+                showGameComplete();
+                return;
+            }
+            
+            setTimeout(() => {
+                renderCards();
+            }, 500);
+        }
+
+        function showGameComplete() {
+            const cardStack = document.getElementById('card-stack');
+            cardStack.innerHTML = `
+                <div class="game-card active" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🎉</div>
+                    <div style="font-size: 1.5rem; margin-bottom: 20px;">Game Complete!</div>
+                    <div style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8);">
+                        Hope you enjoyed the experience!
+                    </div>
+                    <button class="btn-primary" onclick="restartGame()" style="margin-top: 30px;">
+                        Play Again
+                    </button>
+                </div>
+            `;
+        }
+
+        function restartGame() {
+            currentCardIndex = 0;
+            players = [];
+            selectedCategories = [];
+            gameCards = [];
+            playerCount = 2;
+            
+            // Reset player inputs
+            const playersList = document.getElementById('players-list');
+            playersList.innerHTML = `
+                <div class="player-row">
+                    <input type="text" class="name-input" placeholder="Enter name..." data-player="0">
+                    <div class="gender-dropdown">
+                        <button class="gender-btn" onclick="toggleGenderDropdown(0)">❓</button>
+                        <div class="gender-options">
+                            <div class="gender-option" onclick="selectGender(0, '👨', 'Male')">👨</div>
+                            <div class="gender-option" onclick="selectGender(0, '👩', 'Female')">👩</div>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removePlayer(0)" style="display: none;">✖</button>
+                </div>
+                <div class="player-row">
+                    <input type="text" class="name-input" placeholder="Enter name..." data-player="1">
+                    <div class="gender-dropdown">
+                        <button class="gender-btn" onclick="toggleGenderDropdown(1)">❓</button>
+                        <div class="gender-options">
+                            <div class="gender-option" onclick="selectGender(1, '👨', 'Male')">👨</div>
+                            <div class="gender-option" onclick="selectGender(1, '👩', 'Female')">👩</div>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removePlayer(1)" style="display: none;">✖</button>
+                </div>
+            `;
+            
+            // Reset categories
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            showPage('landing');
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.gender-dropdown')) {
+                document.querySelectorAll('.gender-options').forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+
+        // Initialize
+        updateRemoveButtons();
+    </script>
+</body>
+</html>
